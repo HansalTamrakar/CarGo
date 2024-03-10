@@ -21,14 +21,10 @@ import Caraousel from "./Components/Carousel";
 import CarView from "./Components/CarView";
 import Profile from "./Components/User/Profile.jsx";
 import BarCharts from "./Components/User/Overview.jsx";
-
+import Mapshow from "./Components/Mapshow.jsx";
 
 function App() {
-  return (
-    <div>
-  
-    </div>
-  );
+  return <div></div>;
 }
 export const router = createBrowserRouter([
   {
@@ -87,25 +83,29 @@ export const router = createBrowserRouter([
   },
   {
     path: "/personaldetails",
-    element: <Dashboard/>,
+    element: <Dashboard />,
     error: <Error />,
     children: [
       {
         path: "profile",
-        element: <Profile/>,
+        element: <Profile />,
         error: <Error />,
         children: [{}],
       },
       {
         path: "overview",
-        element: <BarCharts/>,
+        element: <BarCharts />,
         error: <Error />,
         children: [{}],
       },
     ],
   },
-
- 
+  {
+    path: "/map",
+    element: <Mapshow />,
+    error: <Error />,
+    children: [{}],
+  },
 ]);
 
 export default App;
