@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 
 const LoginPage = () => {
+  
   const [data, setData] = useState({
     email: "",
     password: "",
@@ -32,7 +33,7 @@ const LoginPage = () => {
         console.log(response);
       })
       .catch((error) => {
-        console.log(error);
+        alert("This Email is Registered Try Another One")
       });
   }
   return (

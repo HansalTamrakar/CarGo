@@ -11,6 +11,8 @@ import "slick-carousel/slick/slick-theme.css";
 import { Link } from "react-router-dom";
 import Cardcar from "./CardCar";
 import carsell from "../Assets/CarSell.png";
+import Header from "./Header";
+import Footer from "./Footer";
 
 const Buy = () => {
   var settings = {
@@ -28,6 +30,7 @@ const Buy = () => {
   };
   return (
     <div>
+      <Header/>
       <div>
         <div className="flex flex-wrap bg-gradient-to-br from-blue-400 to-purple-500 h-[650px]   flex-col justify-center items-center">
           <div className="flex flex-wrap">
@@ -80,6 +83,7 @@ const Buy = () => {
         
         })}
       </div>
+      <Footer/>
     </div>
   );
 };

@@ -3,10 +3,22 @@ import { MapContainer, TileLayer, useMap } from "react-leaflet";
 import L from "leaflet";
 import "leaflet-routing-machine";
 import { OpenStreetMapProvider } from "leaflet-geosearch";
+import { useParams } from "react-router-dom";
+import { useSelector } from 'react-redux';
+import { selectUser } from '../utils/UserSlice'
+
+
+
+// const { location } = useParams();
+
 
 export default function Map() {
+  const user = useSelector(selectUser);
   const map = useMap();
-  const [data, setData] = useState();
+  const { location } = useParams();
+  console.log(location)
+  const [data, setData] = useState([user?.city,location]);
+  console.log("location")
 
   useEffect(() => {
     const geocoder = new OpenStreetMapProvider();
@@ -17,8 +29,8 @@ export default function Map() {
     Promise.all([
       //   geocoder.search({ query: startAddress }),
       //   geocoder.search({ query: endAddress }),
-      geocoder.search({ query: "Durg" }),
-      geocoder.search({ query: "Raipur" }),
+      geocoder.search({ query: user?.city }),
+      geocoder.search({ query: location}),
     ])
       .then((results) => {
         {

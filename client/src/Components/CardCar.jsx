@@ -12,6 +12,7 @@ const Cardcar = ({
   img,
   codn,
   index,
+  location
 }) => {
   
   return (
@@ -32,6 +33,7 @@ const Cardcar = ({
           <div className=" ml-11">Seller-{seller_type}</div>
         </div>
         <div className=" ml-11 text-center mt-4">Owner-{owner}</div>
+        <div className=" ml-11 text-center mt-4">location-{location}</div>
         <div className="flex justify-center">
           {codn ? (
             <Button h={14} w={48} data={"Book"} />

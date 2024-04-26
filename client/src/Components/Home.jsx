@@ -11,32 +11,29 @@ import carImage10 from "../Assets/Caraousel/10.jpg";
 
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { useLocation, useHistory } from 'react-router-dom';
+import { useLocation, useHistory } from "react-router-dom";
 import CarRight from "./CarRight";
-const Home = () => {
+import Header from "./Header";
+import Footer from "./Footer";
+import axios from "axios";
+import { useSelector } from 'react-redux';
+import { selectUser } from '../utils/UserSlice';
 
-  const navigate=useNavigate()
+const Home = () => {
+  const navigate = useNavigate();
+  const user = useSelector(selectUser);
+  console.log(user)
+
   const mystyle = {
     backgroundImage: `url(${homebg})`,
 
     backgroundRepeat: "no-repeat",
     backgroundSize: "cover",
   };
-  const [token,setToken]=useState(localStorage.getItem("token"));
+  const [token, setToken] = useState(localStorage.getItem("token"));
 
 
-  useEffect(() => {
-    
-    function check() {
-    
-      // const hasToken = localStorage.getItem("token") !== null;
-      if (!token) {
-        navigate('/')
-      } 
-    }
-  
-    check();
-  }, []);
+ 
 
   return (
     <div className="">
@@ -44,42 +41,8 @@ const Home = () => {
         className=" h-screen backdrop-filter backdrop-brightness-500 inset-0 opacity-90 "
         style={mystyle}
       >
-        <div className=" flex justify-around text-black opacity-90   h-28 pt-4 bg-gray-900">
-          <div className="font-serif font-semibold">
-            <span className="text-4xl text-white">Cool</span>
-            <br />
-            <div className="flex">
-              <div className="text-4xl ml-2 text-white">Car</div>
-              <div className="rounded-full bg-green-600 h-4 w-4 -translate-y-1 ml-2 "></div>
-            </div>
-          </div>
-          <div className="flex font-cambria  text-3xl">
-            <div className="ml-16 flex items-center cursor-pointer text-white font-bold">
-              Home
+        <Header />
 
-              <div className="ml-16 flex items-center cursor-pointer text-white font-bold">
-              <Link to="/signin/Home/Buy"> Buy</Link>
-              </div>
-            </div>
-            <div className="ml-16 flex items-center cursor-pointer text-white font-bold">
-                <Link to="/signin/Home/Rent"> Rent</Link>
-            </div>
-            <div className="ml-16 flex items-center cursor-pointer  font-bold text-white ">
-              <Link to="/signin/Home/Contact"> Contact</Link>
-            </div>
-          </div>
-          <div className="flex font-bold">
-            <img src={carlogo} alt="" />
-            <div className="text-2xl  flex items-center align-center h-8 mt-6 mb-4  p-6 bg-sky-900 border border-white text-white  shadow-sky-300 opacity-65 hover:bg-green-700  rounded-lg w-min  ">
-              <Link to="/personaldetails/profile"><h1>hansaltamrakar</h1></Link>
-            </div>
-            <a href="https://mediafiles.botpress.cloud/e6cf042b-8f6d-47cb-a6b3-44a744b14961/webchat/bot.html">
-              <button className="text-2xl  flex items-center align-center text-center pl-10 h-8 mt-6 mb-4 w-36 p-6 bg-sky-900 border border-white text-white  shadow-sky-300 opacity-65 hover:bg-green-700  rounded-lg ml-24  ">
-                QnA
-              </button>
-            </a>
-          </div>
-        </div>
         <div className="mt-44 ml-32 flex justify-between mr-20 font-semibold text-gray-600">
           <img src={rent} alt="" className="h-44 w-[600px]" />
           <div className="text-6xl">
@@ -124,80 +87,7 @@ const Home = () => {
         />
       </div>
 
-      <footer class="bg-gray-900 text-gray-300 py-20 ">
-        <div class="container mx-auto px-4">
-          <div class="flex flex-wrap -mx-4">
-            <div class="w-full md:w-1/4 px-4 mb-8 md:mb-0">
-              <h2 class="text-xl font-bold mb-4">About Us</h2>
-              <p>
-                We are on a motive to provide best services on Renting and
-                Selling the Car in a India. We offer the Most Competitive Price
-                and give Discounts on different seasons
-              </p>
-            </div>
-            <div class="w-full md:w-1/4 px-4 mb-8 md:mb-0">
-              <h2 class="text-xl font-bold mb-4">Quick Links</h2>
-              <ul>
-                <li>
-                  <a href="#" class="hover:text-gray-500">
-                    Home
-                  </a>
-                </li>
-                <li>
-                  <a href="#" class="hover:text-gray-500">
-                    Cars
-                  </a>
-                </li>
-                <li>
-                  <a href="#" class="hover:text-gray-500">
-                    Services
-                  </a>
-                </li>
-                <li>
-                  <a href="#" class="hover:text-gray-500">
-                    Contact
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div class="w-full md:w-1/4 px-4 mb-8 md:mb-0">
-              <h2 class="text-xl font-bold mb-4">Contact Us</h2>
-              <p>123 Main Street</p>
-              <p>City, State, ZIP</p>
-              <p>Email: info@example.com</p>
-              <p>Phone: 123-456-7890</p>
-            </div>
-            <div class="w-full md:w-1/4 px-4 mb-8 md:mb-0">
-              <h2 class="text-xl font-bold mb-4">Follow Us</h2>
-              <ul class="flex">
-                <li class="mr-4">
-                  <a href="#">
-                    <i class="fab fa-facebook-f"></i>
-                  </a>
-                </li>
-                <li class="mr-4">
-                  <a href="#">
-                    <i class="fab fa-twitter"></i>
-                  </a>
-                </li>
-                <li class="mr-4">
-                  <a href="#">
-                    <i class="fab fa-instagram"></i>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i class="fab fa-linkedin-in"></i>
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div class="border-t border-gray-700 mt-8 pt-4 text-center text-sm">
-            <p>&copy; 2024 CarWebsite. All rights reserved.</p>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 };

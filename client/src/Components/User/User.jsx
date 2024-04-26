@@ -10,10 +10,20 @@ import Profile from "./Profile";
 import Chart from "chart.js/auto";
 import { Outlet } from "react-router-dom";
 import { Link } from "react-router-dom";
+import Header from "../Header";
+import Footer from "../Footer";
+import { useSelector } from 'react-redux';
+import { selectUser } from '../../utils/UserSlice';
+
+  
 
 const Dashboard = () => {
+  const user = useSelector(selectUser);
   return (
+    <> <Header/>
+
     <div className="h-screen w-screen flex ">
+     
       <div className="w-1/6   bg-gradient-to-r to-blue-950 from-gray-800">
         <div>
           <img src={dashboard} className="h-48 w-auto m-8 ml-26" alt="" />
@@ -53,6 +63,8 @@ const Dashboard = () => {
         <Outlet />
       </div>
     </div>
+    <Footer/>
+    </>
   );
 };
 

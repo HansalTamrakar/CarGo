@@ -1,5 +1,7 @@
 import React from "react";
 import carsell from "../Assets/CarSell.png";
+import Header from "./Header";
+import Footer from "./Footer";
 // import Animation from "./Animation";
 
 
@@ -7,6 +9,7 @@ import carsell from "../Assets/CarSell.png";
 function ContactPage() {
   return (
     <>
+    <Header/>
       <div className="container mx-auto mt-5 flex items-center justify-center h-screen ">
         <div className="flex flex-col  bg-gradient-to-r from-purple-400 to-pink-500  p-8 rounded-lg shadow-lg">
           <div className=" mb-4 ">
@@ -67,6 +70,7 @@ function ContactPage() {
           </div>
         </div>
       </div>
+      <Footer/>
   
     
     </>

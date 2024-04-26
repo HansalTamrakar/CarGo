@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 
 import axios from "axios";
 import { Navigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setUser } from "../utils/UserSlice";
 
 // const navigate =Navigate();
 const LoginPage = () => {
@@ -11,6 +13,8 @@ const LoginPage = () => {
     email: "",
     password: "",
   });
+
+  const dispatch = useDispatch();
 
   function handleInput(e) {
     const name = e.target.name;
@@ -21,13 +25,20 @@ const LoginPage = () => {
   async function handleSubmit(e) {
     e.preventDefault();
     try {
-      
       const response = await axios.post("http://localhost:4000/login", data);
+      console.log(response?.data?.user)
+      dispatch(setUser(response?.data?.user));
+
+
+      localStorage.setItem('user', JSON.stringify(response?.data?.user));
+
+
       const token = response?.data?.token;
       console.log(token);
-      localStorage.setItem("token", token);
+      localStorage.setItem('token', token);
       const hasToken = localStorage.getItem("token") !== null;
-      console.log(hasToken);
+      // console.log(hasToken);
+      
       axios
         .get("http://localhost:4000/token", {
           headers: {
@@ -35,16 +46,24 @@ const LoginPage = () => {
           },
         })
         .then((response) => console.log(response.data))
-        .catch((error) => console.error("Error:", error));
+        .catch((error) => console.error("Error:", "error"));
       if (hasToken) {
         return (window.location.href = "/signin/Home");
       }
+
+      // async function fetchData() {
+      //   try {
+      //     const response = await axios.get('http://localhost:4000/login');
+      //     console.log(response);
+      //   } catch (error) {
+      //     console.error('Error fetching data:', error);
+      //   }
+      // }
+
+      // fetchData();
     } catch (error) {
-
-      alert(error.response.data.message)
-      
+      alert(error.response.data.message);
     }
-
   }
   useEffect(() => {
     function check() {
